@@ -472,6 +472,164 @@
       color: var(--accent);
     }
 
+    /* ── EXPERIENCE / TIMELINE ── */
+    #experience { background: var(--paper); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3.5rem 3rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 2px solid var(--accent);
+      transform: translateX(50%);
+      transition: background 0.3s;
+      z-index: 1;
+    }
+    .timeline-item:hover .timeline-dot { background: var(--accent); }
+
+    .timeline-period {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-company {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+    }
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 58ch;
+    }
+    .timeline-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .timeline-skill-tag {
+      padding: 0.2rem 0.75rem;
+      border: 1px solid var(--line);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--card);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .timeline-item:hover .timeline-skill-tag {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--card); }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .cert-card {
+      background: var(--paper);
+      padding: 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .cert-card:hover { background: var(--ink); }
+
+    .cert-badge {
+      width: 44px; height: 44px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      background: var(--card);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .cert-card:hover .cert-badge {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+    .cert-badge svg { transition: stroke 0.3s; }
+    .cert-card:hover .cert-badge svg { stroke: var(--accent); }
+
+    .cert-issuer {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .cert-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    .cert-card:hover .cert-name { color: var(--paper); }
+
+    .cert-year {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+    .cert-card:hover .cert-year { color: #555; }
+
+    .cert-verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cert-card:hover .cert-verify { opacity: 1; transform: translateY(0); }
+
+
     /* ── PROJECTS ── */
     .projects-grid {
       display: grid;
@@ -757,10 +915,13 @@
       .contact-inner { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .certs-grid { grid-template-columns: 1fr 1fr; }
+
     }
     @media (max-width: 600px) {
       .skills-grid { grid-template-columns: 1fr; }
       .about-facts { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
       body { cursor: auto; }
       .cursor, .cursor-ring { display: none; }
     }
@@ -776,6 +937,8 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" onclick="closeMobileMenu()">About</a>
     <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#certifications" onclick="closeMobileMenu()">Certs</a>
     <a href="#projects" onclick="closeMobileMenu()">Projects</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
@@ -786,6 +949,8 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certs</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -908,10 +1073,127 @@
     </div>
   </section>
 
+  <!-- EXPERIENCE / TIMELINE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2023 — Present</div>
+        <div class="timeline-role">IT & Automation Specialist</div>
+        <div class="timeline-company">Freelance / Self-Employed · Malaysia</div>
+        <div class="timeline-desc">Designing and deploying AI-driven automation workflows for clients across marketing, operations, and customer support. Building n8n pipelines, integrating CRM tools, and developing custom chatbot systems tailored to business needs.</div>
+        <div class="timeline-skills">
+          <span class="timeline-skill-tag">n8n</span>
+          <span class="timeline-skill-tag">Python</span>
+          <span class="timeline-skill-tag">HubSpot</span>
+          <span class="timeline-skill-tag">AI Integration</span>
+          <span class="timeline-skill-tag">Telegram API</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2022 — 2023</div>
+        <div class="timeline-role">Marketing Technology Analyst</div>
+        <div class="timeline-company">Digital Agency · Kuala Lumpur, Malaysia</div>
+        <div class="timeline-desc">Managed CRM data pipelines and marketing automation systems for mid-sized clients. Introduced workflow automation that reduced manual campaign tasks by over 60%, and built dashboards to surface actionable customer engagement insights.</div>
+        <div class="timeline-skills">
+          <span class="timeline-skill-tag">SQL</span>
+          <span class="timeline-skill-tag">CRM</span>
+          <span class="timeline-skill-tag">Data Analytics</span>
+          <span class="timeline-skill-tag">Marketing Automation</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2021 — 2022</div>
+        <div class="timeline-role">Junior IT Support & Web Developer</div>
+        <div class="timeline-company">Tech Solutions Firm · Selangor, Malaysia</div>
+        <div class="timeline-desc">Provided technical support and maintained internal systems. Built and maintained client-facing web applications using modern JavaScript frameworks, contributing to a migration to Next.js for a key client project.</div>
+        <div class="timeline-skills">
+          <span class="timeline-skill-tag">Next.js</span>
+          <span class="timeline-skill-tag">JavaScript</span>
+          <span class="timeline-skill-tag">IT Support</span>
+          <span class="timeline-skill-tag">Web Dev</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Google Data Analytics Professional Certificate</div>
+        <div class="cert-year">2023</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="cert-issuer">HubSpot Academy</div>
+        <div class="cert-name">Marketing Automation Certification</div>
+        <div class="cert-year">2023</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="cert-issuer">DeepLearning.AI</div>
+        <div class="cert-name">AI For Everyone</div>
+        <div class="cert-year">2022</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="cert-issuer">Coursera</div>
+        <div class="cert-name">Python for Everybody Specialisation</div>
+        <div class="cert-year">2022</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <div class="cert-issuer">Meta</div>
+        <div class="cert-name">Meta Front-End Developer Certificate</div>
+        <div class="cert-year">2023</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="cert-issuer">HubSpot Academy</div>
+        <div class="cert-name">Inbound Sales Certification</div>
+        <div class="cert-year">2024</div>
+        <a href="#" class="cert-verify">Verify ↗</a>
+      </div>
+    </div>
+  </section>
+
+
   <!-- PROJECTS -->
   <section id="projects">
     <div class="section-header reveal">
-      <span class="section-number">03</span>
+      <span class="section-number">05</span>
       <h2 class="section-title">Projects</h2>
       <div class="section-line"></div>
     </div>
@@ -946,7 +1228,7 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="section-header reveal">
-      <span class="section-number">04</span>
+      <span class="section-number">06</span>
       <h2 class="section-title">Get In Touch</h2>
       <div class="section-line"></div>
     </div>
