@@ -8,6 +8,24 @@
   <meta property="og:title" content="Arif Zakwan — Portfolio"/>
   <meta property="og:description" content="IT Enthusiast & Automation Specialist. AI-driven workflows, CRM, and n8n automation."/>
   <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://arfzkwn-coder.github.io/portfolio-proj"/>
+  <meta property="og:image" content="https://arfzkwn-coder.github.io/portfolio-proj/og-image.png"/>
+  <link rel="canonical" href="https://arfzkwn-coder.github.io/portfolio-proj"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arif Zakwan",
+    "jobTitle": "IT Enthusiast & Automation Specialist",
+    "url": "https://arfzkwn-coder.github.io/portfolio-proj",
+    "sameAs": [
+      "https://github.com/ArfZkwn-coder",
+      "https://www.linkedin.com/in/arif-zakwan"
+    ],
+    "knowsAbout": ["AI Automation", "CRM", "n8n", "Data Analytics", "Marketing Automation"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
   <style>
@@ -22,10 +40,48 @@
       --line: #dddad3;
       --card: #efece5;
       --dark: #141414;
+      --text-body: #555;
     }
 
     html { scroll-behavior: smooth; }
 
+    /* ── SKIP TO CONTENT ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 1000;
+      padding: 0.75rem 1.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* ── FOCUS VISIBLE ── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
     body {
       background: var(--paper);
       color: var(--ink);
@@ -33,7 +89,6 @@
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
     }
 
     /* ── CUSTOM CURSOR ── */
@@ -128,10 +183,12 @@
       display: none;
       flex-direction: column;
       gap: 5px;
-      cursor: none;
       background: none;
       border: none;
       padding: 4px;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .hamburger { cursor: none; }
     }
     .hamburger span {
       display: block;
@@ -216,7 +273,7 @@
 
     .hero-bio {
       font-size: 1rem;
-      color: #555;
+      color: var(--text-body);
       max-width: 42ch;
       line-height: 1.8;
       margin-bottom: 2.5rem;
@@ -297,7 +354,7 @@
     }
     .hero-stat:hover::before { height: 100%; }
 
-    .hero-stat-number {
+    .hero-stat-value {
       font-family: 'DM Serif Display', serif;
       font-size: 2.4rem;
       line-height: 1;
@@ -336,6 +393,10 @@
 
     /* ── SECTION BASE ── */
     section { padding: 6rem 4rem; position: relative; }
+    #main-content { max-width: 1280px; margin: 0 auto; }
+    @media (min-width: 1440px) {
+      section { padding: 6rem 6rem; }
+    }
 
     .section-header {
       display: flex;
@@ -383,7 +444,7 @@
 
     .about-body {
       font-size: 0.92rem;
-      color: #555;
+      color: var(--text-body);
       line-height: 1.85;
       max-width: 52ch;
     }
@@ -528,7 +589,7 @@
     }
     .timeline-desc {
       font-size: 0.88rem;
-      color: #555;
+      color: var(--text-body);
       line-height: 1.8;
       max-width: 58ch;
     }
@@ -831,9 +892,11 @@
       font-size: 0.82rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      cursor: none;
       transition: background 0.2s, transform 0.2s;
       align-self: flex-start;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .form-submit { cursor: none; }
     }
     .form-submit:hover { background: var(--accent); transform: translateY(-2px); }
 
@@ -922,12 +985,14 @@
       .skills-grid { grid-template-columns: 1fr; }
       .about-facts { grid-template-columns: 1fr; }
       .certs-grid { grid-template-columns: 1fr; }
-      body { cursor: auto; }
       .cursor, .cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- SKIP TO CONTENT -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- CURSOR -->
   <div class="cursor" id="cursor"></div>
@@ -935,12 +1000,12 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="#skills" onclick="closeMobileMenu()">Skills</a>
-    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
-    <a href="#certifications" onclick="closeMobileMenu()">Certs</a>
-    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
-    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certs</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </div>
 
   <!-- NAV -->
@@ -959,6 +1024,9 @@
     </button>
   </nav>
 
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
   <!-- HERO -->
   <section id="hero">
     <div class="hero-left">
@@ -972,15 +1040,15 @@
     </div>
     <div class="hero-right">
       <div class="hero-stat">
-        <div class="hero-stat-number">n8n</div>
+        <div class="hero-stat-value">n8n</div>
         <div class="hero-stat-label">Workflow Automation</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-number">AI</div>
+        <div class="hero-stat-value">AI</div>
         <div class="hero-stat-label">Driven Integrations</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-number">CRM</div>
+        <div class="hero-stat-value">CRM</div>
         <div class="hero-stat-label">Tools &amp; Analytics</div>
       </div>
     </div>
@@ -1067,8 +1135,8 @@
       <div class="skill-card reveal">
         <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="#c8602a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
         <div class="skill-name">Linux System Administration</div>
-        <div class="skill-desc">Building modern, performant web applications with Next.js and the React ecosystem.</div>
-        <span class="skill-tag">Web</span>
+        <div class="skill-desc">Managing Linux servers, automating system tasks with shell scripting, and maintaining secure, stable infrastructure environments.</div>
+        <span class="skill-tag">SysAdmin</span>
       </div>
     </div>
   </section>
@@ -1123,7 +1191,7 @@
         <div class="cert-issuer">Google</div>
         <div class="cert-name">Google Data Analytics Professional Certificate</div>
         <div class="cert-year">2024</div>
-        <a href="#" class="cert-verify">Verify ↗</a>
+        <a href="https://www.coursera.org/professional-certificates/google-data-analytics" target="_blank" rel="noopener noreferrer" class="cert-verify">Verify ↗</a>
       </div>
     </div>
   </section>
@@ -1191,10 +1259,10 @@
       </div>
       <div class="contact-right reveal">
         <div class="contact-links">
-          <a href="https://github.com/ArfZkwn-coder" target="_blank" class="contact-link">
+          <a href="https://github.com/ArfZkwn-coder" target="_blank" rel="noopener noreferrer" class="contact-link">
             <span>GitHub</span><span class="arrow">↗</span>
           </a>
-          <a href="https://www.linkedin.com/in/arif-zakwan" target="_blank" class="contact-link">
+          <a href="https://www.linkedin.com/in/arif-zakwan" target="_blank" rel="noopener noreferrer" class="contact-link">
             <span>LinkedIn</span><span class="arrow">↗</span>
           </a>
           <a href="mailto:arifzakwan2001@gmail.com" class="contact-link">
@@ -1206,19 +1274,19 @@
           <div class="form-row">
             <div class="form-field">
               <label for="fname">Name</label>
-              <input type="text" id="fname" placeholder="Your name" required/>
+              <input type="text" id="fname" placeholder="Your name" required aria-required="true"/>
             </div>
             <div class="form-field">
               <label for="femail">Email</label>
-              <input type="email" id="femail" placeholder="your@email.com" required/>
+              <input type="email" id="femail" placeholder="your@email.com" required aria-required="true"/>
             </div>
           </div>
           <div class="form-field">
             <label for="fmessage">Message</label>
-            <textarea id="fmessage" placeholder="Tell me about your project..." required></textarea>
+            <textarea id="fmessage" placeholder="Tell me about your project..." required aria-required="true"></textarea>
           </div>
           <button type="submit" class="form-submit">Send Message →</button>
-          <div class="form-success" id="formSuccess">
+          <div class="form-success" id="formSuccess" role="alert">
             ✓ Message sent! I'll get back to you soon.
           </div>
         </form>
@@ -1226,38 +1294,47 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
-    <span>© 2025 Arif Zakwan</span>
+    <span>© 2026 Arif Zakwan</span>
     <span>IT Enthusiast &amp; Automation Specialist · Malaysia</span>
     <a href="#hero" class="footer-back">↑ Back to top</a>
   </footer>
 
   <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
+    // Custom cursor (only on hover-capable devices)
+    const isHoverDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    let cursor, ring;
+
+    if (isHoverDevice) {
+      cursor = document.getElementById('cursor');
+      ring = document.getElementById('cursorRing');
+    }
     let mx = 0, my = 0, rx = 0, ry = 0;
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
-    });
+    if (isHoverDevice) {
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+      });
 
-    function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
+      function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+      });
     }
-    animateRing();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
-      el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
-    });
 
     // Nav scroll
     const nav = document.getElementById('nav');
@@ -1268,28 +1345,46 @@
     // Active nav link
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-    const observer2 = new IntersectionObserver(entries => {
+    const obsNav = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+            const isActive = a.getAttribute('href') === '#' + entry.target.id;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
           });
         }
       });
     }, { threshold: 0.4 });
-    sections.forEach(s => observer2.observe(s));
+    sections.forEach(s => obsNav.observe(s));
 
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
+
     function closeMobileMenu() {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
     }
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click (delegated)
+    mobileMenu.addEventListener('click', e => {
+      if (e.target.tagName === 'A') closeMobileMenu();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+        hamburger.focus();
+      }
+    });
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
@@ -1304,14 +1399,33 @@
     reveals.forEach(el => revealObs.observe(el));
 
     // Contact form (mailto fallback)
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    const contactForm = document.getElementById('contactForm');
+    const formSubmit = contactForm.querySelector('.form-submit');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const name = document.getElementById('fname').value;
-      const email = document.getElementById('femail').value;
-      const msg = document.getElementById('fmessage').value;
+
+      // Basic client-side validation
+      const name = document.getElementById('fname').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const msg = document.getElementById('fmessage').value.trim();
+
+      if (!name || !email || !msg) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      formSubmit.disabled = true;
+      formSubmit.textContent = 'Sending...';
+
       const mailto = `mailto:arifzakwan2001@gmail.com?subject=Portfolio Enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
       window.location.href = mailto;
-      document.getElementById('formSuccess').classList.add('show');
+
+      formSuccess.classList.add('show');
+      formSubmit.disabled = false;
+      formSubmit.textContent = 'Send Message →';
       this.reset();
     });
   </script>
